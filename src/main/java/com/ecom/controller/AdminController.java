@@ -111,6 +111,11 @@ public class AdminController {
 	public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file,
 			HttpSession session) throws IOException {
 
+	    if (file.isEmpty()) {
+	        session.setAttribute("errorMsg", "Image is required for the category.");
+	        return "redirect:/admin/category";  // Redirect back to the form with the error message
+	    }
+	    
 		String imageName = file != null ? file.getOriginalFilename() : "default.jpg";
 		category.setImageName(imageName);
 
@@ -200,6 +205,11 @@ public class AdminController {
 	public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image,
 			HttpSession session) throws IOException {
 
+		if (image.isEmpty()) {
+	        session.setAttribute("errorMsg", "Product image is required.");
+	        return "redirect:/admin/loadAddProduct";  // Redirect back to the form with the error message
+	    }
+		
 		String imageName = image.isEmpty() ? "default.jpg" : image.getOriginalFilename();
 
 		product.setImage(imageName);

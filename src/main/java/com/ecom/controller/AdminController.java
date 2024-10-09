@@ -113,7 +113,7 @@ public class AdminController {
 
 	    if (file.isEmpty()) {
 	        session.setAttribute("errorMsg", "Image is required for the category.");
-	        return "redirect:/admin/category";  // Redirect back to the form with the error message
+	        return "redirect:/admin/category";  
 	    }
 	    
 		String imageName = file != null ? file.getOriginalFilename() : "default.jpg";
@@ -207,7 +207,7 @@ public class AdminController {
 
 		if (image.isEmpty()) {
 	        session.setAttribute("errorMsg", "Product image is required.");
-	        return "redirect:/admin/loadAddProduct";  // Redirect back to the form with the error message
+	        return "redirect:/admin/loadAddProduct";  
 	    }
 		
 		String imageName = image.isEmpty() ? "default.jpg" : image.getOriginalFilename();
